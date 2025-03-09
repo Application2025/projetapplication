@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Gestion des Plans comptables</h1>
+<div class="form-container">
+    <form action="" method="POST">
+        <div class="form-group">
+            <label for="id_nom">Nom du plan comptable</label>
+            {{ form.nom }}
+        </div>
+        <div class="form-group">
+            <label for="id_description">Description du plan comptable</label>
+            {{ form.description }}
+        </div>
+    
+        {% csrf_token %}
+        <div class="form-button">
+            <button type="submit">➕ Créer plan comptable</button>
+        </div>
+    </form>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Actions</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in plancomptables %}
+        <tr>
+            <td>{{ a.id }}</td>
+            <td><a href="{% url 'compte' a.id %}">{{ a.nom }}</a></td>
+            <td>{{ a.description }}</td>
+            <td><a href="{% url 'plancomptable_delete' a.id %}">🗑️ Supprimer</a>
+            <a href="{% url 'plancomptable_update' a.id %}">✏️ Modifier</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

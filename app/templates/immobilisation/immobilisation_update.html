@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Modifie l'immobilisation' {{ elt }}</h1>
+<div class="form-container">
+    <form action="" method="POST">
+        <div class="form-group">
+            <label for="id_nom">Nom de l'immobilisation</label>
+            {{ form.nom }}
+        </div>
+        <div class="form-group">
+            <label for="id_description">Description</label>
+            {{ form.description }}
+        </div>
+        <div class="form-group">
+            <label for="id_date_acquisition">Date d'acquisition</label>
+            {{ form.date_acquisition }}
+        </div>
+        <div class="form-group">
+            <label for="id_valeur_acquisition">Valeur d'acquisition</label>
+            {{ form.valeur_acquisition }}
+        </div>
+        <div class="form-group">
+            <label for="id_duree_de_vie">Durée de vie</label>
+            {{ form.duree_de_vie }}
+        </div>
+        <div class="form-group">
+            <label for="id_taux_amortissement">Taux d'amortissement</label>
+            {{ form.taux_amortissement }}
+        </div>
+        <div class="form-group">
+            <label for="id_valeur_residuelle">Valeur résiduelle</label>
+            {{ form.valeur_residuelle }}
+        </div>
+        {% csrf_token %}
+        <div class="form-button">
+            <button type="submit">✏️ Modifier immobilisation</button>
+        </div>
+    </form>
+</div>
+<div class="form-button">
+<a href="{% url 'immobilisation' %}" id="a">Annuler</a>
+</div>
+{% endblock content %}

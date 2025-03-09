@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Modifie le client {{ elt }}</h1>
+<div class="form-container">
+    <form action="" method="POST">
+        <div class="form-group">
+            <label for="id_nom">Nom du client</label>
+            {{ form.nom }}
+        </div>
+        <div class="form-group">
+            <label for="id_adresse">Adresse</label>
+            {{ form.adresse }}
+        </div>
+        <div class="form-group">
+            <label for="id_email">Email</label>
+            {{ form.email }}
+        </div>
+        <div class="form-group">
+            <label for="id_telephone">Téléphone</label>
+            {{ form.telephone }}
+        </div>
+        {% csrf_token %}
+        <div class="form-button">
+            <button type="submit">✏️ Modifier client</button>
+        </div>
+    </form>
+</div>
+<div class="form-button">
+<a href="{% url 'compte' %}" id="a">Annuler</a>
+</div>
+{% endblock content %}

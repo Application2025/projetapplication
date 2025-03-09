@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Veux tu supprimer {{ elt }} ?</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="form-button">
+        <button type="submit">Supprimer</button>
+    </div>
+</form>
+<p>
+    <div class="form-button">
+    <a href="{% url 'fournisseur' %}" id="a">Annuler</a><br>
+    </div>
+</p>
+{% endblock content %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Gestion des Factures</h1>
+<div class="form-container">
+    <form action="" method="POST">
+        <div class="form-group">
+            <label for="id_numero">Numéro</label>
+            {{ form.numero }}
+        </div>
+        <div class="form-group">
+            <label for="id_date_emission">Date d'émission</label>
+            {{ form.date_emission }}
+        </div>
+        <div class="form-group">
+            <label for="id_date_echeance">Date d'écheance</label>
+            {{ form.date_echeance }}
+        </div>
+        <div class="form-group">
+            <label for="id_montant_total">Montant total</label>
+            {{ form.montant_total }}
+        </div>
+        <div class="form-group">
+            <label>Etat</label>
+            <div class="radio-group">
+                {{ form.etat }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="id_client">Client</label>
+            {{ form.client }}
+        </div>
+        <div class="form-group">
+            <label for="id_fournisseur">Fournisseur</label>
+            {{ form.fournisseur }}
+        </div>
+        {% csrf_token %}
+        <div class="form-button">
+            <button type="submit">➕ Créer Facture</button>
+        </div>
+    </form>
+</div>
+    
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Numéro</th>
+            <th>Date d'émission</th>
+            <th>Date d'échéance</th>
+            <th>Montant total</th>
+            <th>Etat</th>
+            <th>Client</th>
+            <th>Fournisseur</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in factures %}
+        <tr>
+            <td>{{ a.id }}</td>
+            <td>{{ a.numero }}</td>
+            <td>{{ a.date_emission|date:"d/m/Y" }}</td>
+            <td>{{ a.date_echeance|date:"d/m/Y" }}</td>
+            <td>{{ a.montant_total }} Franc CFA</td>
+            <td>{{ a.etat }}</td>
+            <td>{{ a.client.nom }}</td>
+            <td>{{ a.fournisseur.nom }}</td>
+            <td>
+                <a href="{% url 'facture_update' a.id %}">✏️ Modifier</a>
+                <a href="{% url 'facture_delete' a.id %}">🗑️ Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

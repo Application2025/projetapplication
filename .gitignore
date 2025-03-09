@@ -1,0 +1,21 @@
+﻿# Django
+db.sqlite3
+*.pyc
+__pycache__/
+env/
+
+# Environnements virtuels
+.venv/
+venv/
+
+# Variables d'environnement
+.env
+
+# Windows spécifique
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDE/Editors
+.vscode/
+.idea/

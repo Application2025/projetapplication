@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Modifie le compte {{ elt }}</h1>
+<div class="form-container">
+    <form action="" method="POST">
+        <div class="form-group">
+            <label for="id_nom">Nom du compte</label>
+            {{ form.nom }}
+        </div>
+        <div class="form-group">
+            <label for="id_numero">Numéro du compte</label>
+            {{ form.numero }}
+        </div>
+        <div class="form-group">
+            <label for="id_solde">Solde initial</label>
+            {{ form.solde }}
+        </div>
+        <div class="form-group">
+            <label>Type de compte</label>
+            <div class="radio-group">
+                {{ form.type }}
+            </div>
+        </div>
+        <input type="hidden" name="plan_comptable" value="{{ p.id }}">
+
+        {% csrf_token %}
+        <div class="form-button">
+            <button type="submit">✏️ Modifier compte</button>
+        </div>
+    </form>
+</div>
+<div class="form-button">
+<a href="{% url 'compte' p.id %}" id="a">Annuler</a>
+</div>
+{% endblock content %}

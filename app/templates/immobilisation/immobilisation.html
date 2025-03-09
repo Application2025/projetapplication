@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Gestion des Immobilisations</h1>
+<div class="form-container">
+    <form action="" method="POST">
+        <div class="form-group">
+            <label for="id_nom">Nom de l'immobilisation</label>
+            {{ form.nom }}
+        </div>
+        <div class="form-group">
+            <label for="id_description">Description</label>
+            {{ form.description }}
+        </div>
+        <div class="form-group">
+            <label for="id_date_acquisition">Date d'acquisition</label>
+            {{ form.date_acquisition }}
+        </div>
+        <div class="form-group">
+            <label for="id_valeur_acquisition">Valeur d'acquisition</label>
+            {{ form.valeur_acquisition }}
+        </div>
+        <div class="form-group">
+            <label for="id_duree_de_vie">Durée de vie</label>
+            {{ form.duree_de_vie }}
+        </div>
+        <div class="form-group">
+            <label for="id_taux_amortissement">Taux d'amortissement</label>
+            {{ form.taux_amortissement }}
+        </div>
+        <div class="form-group">
+            <label for="id_valeur_residuelle">Valeur résiduelle</label>
+            {{ form.valeur_residuelle }}
+        </div>
+        {% csrf_token %}
+        <div class="form-button">
+            <button type="submit">➕ Créer immobilisation</button>
+        </div>
+    </form>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Noms</th>
+            <th>Description</th>
+            <th>Date d'acquisition</th>
+            <th>Valeur d'acquisition</th>
+            <th>Durée de vie</th>
+            <th>Taux d'amortissement</th>
+            <th>Valeur résiduelle</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in immobilisations %}
+        <tr>
+            <td>{{ a.id }}</td>
+            <td>{{ a.nom }}</td>
+            <td>{{ a.description }}</td>
+            <td>{{ a.date_acquisition|date:"d/m/Y" }}</td>
+            <td>{{ a.valeur_acquisition }} Franc CFA</td>
+            <td>{{ a.duree_de_vie }} ans</td>
+            <td>{{ a.taux_amortissement }} %</td>
+            <td>{{ a.valeur_residuelle }} Franc CFA</td>
+            <td>
+                <a href="{% url 'immobilisation_update' a.id %}">✏️ Modifier</a>
+                <a href="{% url 'immobilisation_delete' a.id %}">🗑️ Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

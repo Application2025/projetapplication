@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Modifie l'écriture' {{ elt }}</h1>
+<div class="form-container">
+    <form action="" method="POST">
+        <div class="form-group">
+            <label for="id_date">Date</label>
+            {{ form.date }}
+        </div>
+        <div class="form-group">
+            <label for="id_montant">Montant</label>
+            {{ form.montant }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_commentaire">Commentaires</label>
+            {{ form.commentaire }}
+        </div>
+        <div class="form-group">
+            <label for="id_justificatif">Justificatif</label>
+            {{ form.justificatif }}
+        </div>
+        <div class="form-group">
+            <label for="id_debit">Débit</label>
+            {{ form.debit }}
+        </div>
+        <div class="form-group">
+            <label for="id_credit">Crédit</label>
+            {{ form.credit }}
+        </div>
+        {% csrf_token %}
+        <div class="form-button">
+            <button type="submit">✏️ Modifier Ecriture</button>
+        </div>
+    </form>
+</div>
+<div class="form-button">
+<a href="{% url 'ecriture' %}" id="a">Annuler</a>
+</div>
+{% endblock content %}

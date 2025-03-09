@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Gestion des Ecritures comptables</h1>
+<div class="form-container">
+    <form action="" method="POST">
+        <div class="form-group">
+            <label for="id_date">Date</label>
+            {{ form.date }}
+        </div>
+        <div class="form-group">
+            <label for="id_montant">Montant</label>
+            {{ form.montant }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_commentaire">Commentaires</label>
+            {{ form.commentaire }}
+        </div>
+        <div class="form-group">
+            <label for="id_justificatif">Justificatif</label>
+            {{ form.justificatif }}
+        </div>
+        <div class="form-group">
+            <label for="id_debit">Débit</label>
+            {{ form.debit }}
+        </div>
+        <div class="form-group">
+            <label for="id_credit">Crédit</label>
+            {{ form.credit }}
+        </div>
+        {% csrf_token %}
+        <div class="form-button">
+            <button type="submit">➕ Créer Ecriture</button>
+        </div>
+    </form>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Montant</th>
+            <th>Commentaires</th>
+            <th>Justificatif</th>
+            <th>Débit</th>
+            <th>Crédit</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in ecritures %}
+        <tr>
+            <td>{{ a.id }}</td>
+            <td>{{ a.date|date:"d/m/Y" }}</td>
+            <td>{{ a.montant }} Franc CFA</td>
+            <td>{{ a.commentaire }}</td>
+            <td>{{ a.justificatif }}</td>
+            <td>{{ a.debit.nom }}</td>
+            <td>{{ a.credit.nom }}</td>
+            <td>
+                <a href="{% url 'ecriture_update' a.id %}">✏️ Modifier</a>
+                <a href="{% url 'ecriture_delete' a.id %}">🗑️ Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

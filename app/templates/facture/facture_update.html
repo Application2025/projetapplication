@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Modifie la facture' {{ elt }}</h1>
+<div class="form-container">
+    <form action="" method="POST">
+        <div class="form-group">
+            <label for="id_numero">Numéro</label>
+            {{ form.numero }}
+        </div>
+        <div class="form-group">
+            <label for="id_date_emission">Date d'émission</label>
+            {{ form.date_emission }}
+        </div>
+        <div class="form-group">
+            <label for="id_date_echeance">Date d'écheance</label>
+            {{ form.date_echeance }}
+        </div>
+        <div class="form-group">
+            <label for="id_montant_total">Montant total</label>
+            {{ form.montant_total }}
+        </div>
+        <div class="form-group">
+            <label>Etat</label>
+            <div class="radio-group">
+                {{ form.etat }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="id_client">Client</label>
+            {{ form.client }}
+        </div>
+        <div class="form-group">
+            <label for="id_fournisseur">Fournisseur</label>
+            {{ form.fournisseur }}
+        </div>
+        {% csrf_token %}
+        <div class="form-button">
+            <button type="submit">✏️ Modifier facture</button>
+        </div>
+    </form>
+</div>
+<div class="form-button">
+<a href="{% url 'facture' %}" id="a">Annuler</a>
+</div>
+{% endblock content %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Gestion de la Trésorerie</h1>
+<div class="form-container">
+    <form action="" method="POST">
+        <div class="form-group">
+            <label for="id_date">Date</label>
+            {{ form.date }}
+        </div>
+        <div class="form-group">
+            <label for="id_montant">Montant</label>
+            {{ form.montant }}
+        </div>
+        <div class="form-group">
+            <label for="id_description">Description</label>
+            {{ form.description }}
+        </div>
+        <div class="form-group">
+            <label>Flux</label>
+            <div class="radio-group"> 
+                {{ form.flux }}
+            </div>
+        </div>
+        {% csrf_token %}
+        <div class="form-button">
+            <button type="submit">➕ Créer Trésorerie</button>
+        </div>
+    </form>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Flux</th>
+            <th>Montant</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in tresoreries %}
+        <tr>
+            <td>{{ a.id }}</td>
+            <td>{{ a.date|date:"d/m/Y" }}</td>
+            <td>{{ a.flux }}</td>
+            <td>{{ a.montant }} Franc CFA</td>
+            <td>{{ a.description }}</td>
+            <td>
+                <a href="{% url 'tresorerie_update' a.id %}">✏️ Modifier</a>
+                <a href="{% url 'tresorerie_delete' a.id %}">🗑️ Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

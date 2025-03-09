@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Modifie le plan comptable {{ elt }}</h1>
+<div class="form-container">
+    <form action="" method="POST">
+        <div class="form-group">
+            <label for="id_nom">Nom du plan comptable</label>
+            {{ form.nom }}
+        </div>
+        <div class="form-group">
+            <label for="id_numero">Description du plan comptable</label>
+            {{ form.description }}
+        </div>
+    
+        {% csrf_token %}
+        <div class="form-button">
+            <button type="submit">✏️ Modifier plan comptable</button>
+        </div>
+    </form>
+</div>
+<div class="form-button">
+<a href="{% url 'plancomptable' %}" id="a">Annuler</a>
+</div>
+{% endblock content %}
